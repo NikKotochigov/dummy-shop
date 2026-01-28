@@ -1,0 +1,85 @@
+@import "@/shared/styles/mixins.scss";
+
+.loginFormContainer {
+  @include flex-center;
+  min-height: calc(100vh - 300px);
+  padding: $spacing-lg;
+  background-color: $bg-secondary;
+}
+
+.loginForm {
+  width: 100%;
+  max-width: 400px;
+  padding: $spacing-xl;
+  background-color: $bg-primary;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin: 0 0 $spacing-xl 0;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: $text-primary;
+}
+
+.formGroup {
+  margin-bottom: $spacing-md;
+}
+
+.label {
+  display: block;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-base;
+  font-weight: 500;
+  color: $text-primary;
+}
+
+.input {
+  @include input-base;
+}
+
+.inputError {
+  border-color: $error-color;
+}
+
+.errorText {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-small;
+  color: $error-color;
+}
+
+.errorMessage {
+  padding: $spacing-md;
+  background-color: #fff5f5;
+  border: 1px solid $error-color;
+  border-radius: $border-radius;
+  color: $error-color;
+  margin-bottom: $spacing-md;
+
+  p {
+    margin: 0;
+    font-size: $font-size-small;
+  }
+}
+
+.submitButton {
+  @include button-base;
+  width: 100%;
+  margin-top: $spacing-lg;
+  padding: $spacing-md;
+  background-color: $primary-color;
+  color: $bg-primary;
+  font-size: $font-size-base;
+  font-weight: 600;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+  }
+}

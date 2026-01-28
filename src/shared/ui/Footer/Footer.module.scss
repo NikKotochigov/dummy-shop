@@ -1,0 +1,30 @@
+@import "@/shared/styles/mixins.scss";
+
+.footer {
+  background-color: $bg-secondary;
+  border-top: 1px solid $border-color;
+  padding: $spacing-md $spacing-lg;
+  margin-top: auto;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-md;
+  font-size: $font-size-small;
+  color: $text-secondary;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+}
+
+.year {
+  font-weight: 500;
+}
+
+.userInfo {
+  color: $text-primary;
+}

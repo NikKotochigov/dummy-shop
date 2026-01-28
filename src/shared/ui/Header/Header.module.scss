@@ -1,0 +1,153 @@
+@import "@/shared/styles/mixins.scss";
+
+$accent-red: #d10024;
+
+.header {
+  background-color: $bg-header;
+  color: $text-white;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm $spacing-lg;
+  background-color: $bg-dark;
+  font-size: $font-size-small;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.contacts {
+  display: flex;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+
+  @include mobile {
+    gap: $spacing-md;
+    font-size: 12px;
+  }
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $text-white;
+}
+
+.icon {
+  color: $accent-red;
+  flex: 0 0 auto;
+  display: inline-block;
+}
+
+.authSection {
+  display: flex;
+  align-items: center;
+}
+
+.loginLink {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $text-white;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.logoutButton {
+  @include button-base;
+  background: transparent;
+  color: $text-white;
+  padding: $spacing-xs $spacing-sm;
+  font-size: $font-size-small;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.middleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  background-color: $bg-header;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-md;
+  }
+}
+
+.logo {
+  font-size: $font-size-large;
+  font-weight: 700;
+  color: $text-white;
+}
+
+.redDot {
+  color: $error-color;
+}
+
+.banner {
+  @include flex-center;
+  width: 600px;
+  height: 70px;
+  background-color: $bg-secondary;
+  border: 1px dashed $border-color;
+  color: $text-secondary;
+
+  @include mobile {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.bannerPlaceholder {
+  font-size: $font-size-small;
+}
+
+.nav {
+  display: flex;
+  gap: $spacing-lg;
+  padding: $spacing-md $spacing-lg;
+  background-color: $bg-primary;
+  border-top: 1px solid $border-color;
+  overflow-x: auto;
+
+  @include mobile {
+    gap: $spacing-md;
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.navLink {
+  color: $text-primary;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.userInfo {
+  padding: $spacing-sm $spacing-lg;
+  background-color: $bg-secondary;
+  color: $text-primary;
+  font-size: $font-size-small;
+  text-align: right;
+}
