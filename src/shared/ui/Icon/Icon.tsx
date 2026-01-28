@@ -72,4 +72,3 @@ export const Icon = ({ name, size = 14, className, ...props }: Props) => {
       return null;
   }
 };
-

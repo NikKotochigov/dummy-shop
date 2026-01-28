@@ -54,12 +54,9 @@ export const LoginForm = () => {
   return (
     <div className={styles.loginFormContainer}>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
-        <h1 className={styles.title}>Вход</h1>
+        <h1 className={styles.title}>Login</h1>
 
         <div className={styles.formGroup}>
-          <label htmlFor="username" className={styles.label}>
-            Имя пользователя
-          </label>
           <input
             type="text"
             id="username"
@@ -68,16 +65,17 @@ export const LoginForm = () => {
             onChange={handleChange}
             className={`${styles.input} ${validationErrors.username ? styles.inputError : ""}`}
             disabled={isLoading}
+            placeholder="Username"
+            autoComplete="username"
           />
           {validationErrors.username && (
-            <span className={styles.errorText}>{validationErrors.username}</span>
+            <span className={styles.errorText}>
+              {validationErrors.username}
+            </span>
           )}
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>
-            Пароль
-          </label>
           <input
             type="password"
             id="password"
@@ -86,9 +84,13 @@ export const LoginForm = () => {
             onChange={handleChange}
             className={`${styles.input} ${validationErrors.password ? styles.inputError : ""}`}
             disabled={isLoading}
+            placeholder="Password"
+            autoComplete="current-password"
           />
           {validationErrors.password && (
-            <span className={styles.errorText}>{validationErrors.password}</span>
+            <span className={styles.errorText}>
+              {validationErrors.password}
+            </span>
           )}
         </div>
 
@@ -98,8 +100,12 @@ export const LoginForm = () => {
           </div>
         )}
 
-        <button type="submit" className={styles.submitButton} disabled={isLoading}>
-          {isLoading ? "Загрузка..." : "Login"}
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={isLoading}
+        >
+          {isLoading ? "Loading..." : "Login"}
         </button>
       </form>
     </div>

@@ -2,42 +2,42 @@
 
 .loginFormContainer {
   @include flex-center;
-  min-height: calc(100vh - 300px);
-  padding: $spacing-lg;
-  background-color: $bg-secondary;
+  min-height: calc(100vh - 260px);
+  padding: 48px $spacing-lg;
+  background-color: $bg-primary;
 }
 
 .loginForm {
   width: 100%;
-  max-width: 400px;
-  padding: $spacing-xl;
-  background-color: $bg-primary;
-  border-radius: $border-radius;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 640px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .title {
-  margin: 0 0 $spacing-xl 0;
-  font-size: 24px;
-  font-weight: 700;
+  margin: 0 0 24px 0;
+  font-size: 28px;
+  font-weight: 800;
   text-align: center;
-  color: $text-primary;
+  color: #15161d;
 }
 
 .formGroup {
-  margin-bottom: $spacing-md;
-}
-
-.label {
-  display: block;
-  margin-bottom: $spacing-sm;
-  font-size: $font-size-base;
-  font-weight: 500;
-  color: $text-primary;
+  margin-bottom: 16px;
 }
 
 .input {
   @include input-base;
+  height: 48px;
+  border-radius: 3px;
+  border-color: #e4e7ed;
+  background-color: #fff;
+
+  &::placeholder {
+    color: #b9babc;
+  }
 }
 
 .inputError {
@@ -55,7 +55,7 @@
   padding: $spacing-md;
   background-color: #fff5f5;
   border: 1px solid $error-color;
-  border-radius: $border-radius;
+  border-radius: 3px;
   color: $error-color;
   margin-bottom: $spacing-md;
 
@@ -68,18 +68,30 @@
 .submitButton {
   @include button-base;
   width: 100%;
-  margin-top: $spacing-lg;
-  padding: $spacing-md;
-  background-color: $primary-color;
-  color: $bg-primary;
-  font-size: $font-size-base;
+  margin-top: 12px;
+  height: 48px;
+  padding: 0 $spacing-md;
+  background-color: #15161d;
+  color: #ffffff;
+  font-size: 16px;
   font-weight: 600;
+  border-radius: 3px;
 
   &:hover:not(:disabled) {
-    background-color: $primary-hover;
+    background-color: #1f2028;
   }
 
   &:disabled {
     opacity: 0.7;
+  }
+}
+
+@include mobile {
+  .loginFormContainer {
+    padding: 32px $spacing-md;
+  }
+
+  .loginForm {
+    max-width: 100%;
   }
 }

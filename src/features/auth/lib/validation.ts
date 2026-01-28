@@ -7,25 +7,27 @@ export interface ValidationErrors {
 
 export const validateUsername = (username: string): string | null => {
   if (!username || username.trim() === "") {
-    return "Имя пользователя обязательно";
+    return "Username is required";
   }
   if (username.length < 3) {
-    return "Имя пользователя должно содержать минимум 3 символа";
+    return "Username must be at least 3 characters";
   }
   return null;
 };
 
 export const validatePassword = (password: string): string | null => {
   if (!password || password.trim() === "") {
-    return "Пароль обязателен";
+    return "Password is required";
   }
   if (password.length < 3) {
-    return "Пароль должен содержать минимум 3 символа";
+    return "Password must be at least 3 characters";
   }
   return null;
 };
 
-export const validateLoginForm = (credentials: LoginCredentials): ValidationErrors => {
+export const validateLoginForm = (
+  credentials: LoginCredentials
+): ValidationErrors => {
   const errors: ValidationErrors = {};
 
   const usernameError = validateUsername(credentials.username);

@@ -6,11 +6,13 @@ import { ApiError } from "@/shared/types";
 
 interface AuthState {
   user: User | null;
-  token: string | null;
+  accessToken: string | null;
+  refreshToken: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
   login: (credentials: LoginCredentials) => Promise<void>;
+  refresh: () => Promise<void>;
   logout: () => void;
   checkAuth: () => void;
   clearError: () => void;
@@ -18,9 +20,10 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
-      token: null,
+      accessToken: null,
+      refreshToken: null,
       isAuthenticated: false,
       isLoading: false,
       error: null,
@@ -39,7 +42,8 @@ export const useAuthStore = create<AuthState>()(
               gender: response.gender,
               image: response.image,
             },
-            token: response.token,
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
             isAuthenticated: true,
             isLoading: false,
             error: null,
@@ -48,10 +52,36 @@ export const useAuthStore = create<AuthState>()(
           const apiError = error as ApiError;
           set({
             isLoading: false,
-            error: apiError.message || "Ошибка при авторизации",
+            error: apiError.message || "Login failed",
             isAuthenticated: false,
             user: null,
-            token: null,
+            accessToken: null,
+            refreshToken: null,
+          });
+          throw error;
+        }
+      },
+
+      refresh: async () => {
+        const { refreshToken } = get();
+        if (!refreshToken) {
+          throw new Error("No refresh token available");
+        }
+
+        try {
+          const response = await authApi.refresh(refreshToken);
+          set({
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
+          });
+        } catch (error) {
+          const apiError = error as ApiError;
+          set({
+            accessToken: null,
+            refreshToken: null,
+            isAuthenticated: false,
+            user: null,
+            error: apiError.message || "Token refresh failed",
           });
           throw error;
         }
@@ -60,7 +90,8 @@ export const useAuthStore = create<AuthState>()(
       logout: () => {
         set({
           user: null,
-          token: null,
+          accessToken: null,
+          refreshToken: null,
           isAuthenticated: false,
           error: null,
         });
@@ -68,20 +99,24 @@ export const useAuthStore = create<AuthState>()(
 
       checkAuth: () => {
         if (typeof window !== "undefined") {
-          const token = localStorage.getItem("token");
-          const userStr = localStorage.getItem("user");
-          if (token && userStr) {
+          const stored = localStorage.getItem("auth-storage");
+          if (stored) {
             try {
-              const user = JSON.parse(userStr);
-              set({
-                user,
-                token,
-                isAuthenticated: true,
-              });
+              const parsed = JSON.parse(stored);
+              const state = parsed.state;
+              if (state?.accessToken && state?.user) {
+                set({
+                  user: state.user,
+                  accessToken: state.accessToken,
+                  refreshToken: state.refreshToken,
+                  isAuthenticated: state.isAuthenticated || false,
+                });
+              }
             } catch {
               set({
                 user: null,
-                token: null,
+                accessToken: null,
+                refreshToken: null,
                 isAuthenticated: false,
               });
             }
@@ -97,7 +132,8 @@ export const useAuthStore = create<AuthState>()(
       name: "auth-storage",
       partialize: (state) => ({
         user: state.user,
-        token: state.token,
+        accessToken: state.accessToken,
+        refreshToken: state.refreshToken,
         isAuthenticated: state.isAuthenticated,
       }),
     }
