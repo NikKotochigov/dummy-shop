@@ -22,7 +22,7 @@ const NAV_LINKS = [
 ] as const;
 
 export const Header = () => {
-  const { user, isAuthenticated, logout } = useAuthStore();
+  const { isAuthenticated, logout } = useAuthStore();
 
   return (
     <header className={styles.header}>
