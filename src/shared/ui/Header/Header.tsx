@@ -63,11 +63,6 @@ export const Header = () => {
         ))}
       </nav>
 
-      {isAuthenticated && user && (
-        <div className={styles.userInfo}>
-          {user.firstName} {user.lastName}
-        </div>
-      )}
     </header>
   );
 };

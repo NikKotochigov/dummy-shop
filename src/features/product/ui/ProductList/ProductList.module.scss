@@ -1,0 +1,50 @@
+@import "@/shared/styles/mixins.scss";
+@import "@/shared/styles/variables.scss";
+
+.container {
+  padding: $spacing-xl $spacing-lg;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include mobile {
+    padding: $spacing-md;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-xl;
+  text-align: center;
+
+  @include mobile {
+    font-size: 24px;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+  width: 100%;
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: $spacing-md;
+  }
+}
+
+.loading,
+.error,
+.empty {
+  text-align: center;
+  padding: $spacing-xl;
+  font-size: $font-size-large;
+  color: $text-secondary;
+}
+
+.error {
+  color: $error-color;
+}

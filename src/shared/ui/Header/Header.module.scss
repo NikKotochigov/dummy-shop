@@ -1,8 +1,10 @@
 @import "@/shared/styles/mixins.scss";
-
-$accent-red: #d10024;
+@import "@/shared/styles/variables.scss";
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background-color: $bg-header;
   color: $text-white;
 }
@@ -133,12 +135,4 @@ $accent-red: #d10024;
   &:hover {
     color: $primary-color;
   }
-}
-
-.userInfo {
-  padding: $spacing-sm $spacing-lg;
-  background-color: $bg-secondary;
-  color: $text-primary;
-  font-size: $font-size-small;
-  text-align: right;
 }
