@@ -53,9 +53,6 @@ export const Header = () => {
         <div className={styles.logo}>
           Abelohost Shop<span className={styles.redDot}>.</span>
         </div>
-        <div className={styles.banner}>
-          <span className={styles.bannerPlaceholder}>600 x 70</span>
-        </div>
       </div>
 
       <nav className={styles.nav}>
