@@ -22,7 +22,7 @@ const NAV_LINKS = [
 ] as const;
 
 export const Header = () => {
-  const { isAuthenticated, logout } = useAuthStore();
+  const { isAuthenticated, logout, user } = useAuthStore();
 
   return (
     <header className={styles.header}>
@@ -36,10 +36,15 @@ export const Header = () => {
           ))}
         </div>
         <div className={styles.authSection}>
-          {isAuthenticated ? (
-            <button onClick={logout} className={styles.logoutButton}>
-              Logout
-            </button>
+          {isAuthenticated && user ? (
+            <div className={styles.userInfo}>
+              <span className={styles.userName}>
+                {user.firstName} {user.lastName}
+              </span>
+              <button onClick={logout} className={styles.logoutButton}>
+                Logout
+              </button>
+            </div>
           ) : (
             <Link href="/login" className={styles.loginLink}>
               <Icon name="user" className={styles.icon} />

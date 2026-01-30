@@ -55,6 +55,18 @@
   align-items: center;
 }
 
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.userName {
+  color: $text-white;
+  font-size: $font-size-small;
+  font-weight: 500;
+}
+
 .loginLink {
   display: flex;
   align-items: center;
