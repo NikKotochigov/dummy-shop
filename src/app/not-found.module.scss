@@ -1,0 +1,83 @@
+@import "@/shared/styles/mixins.scss";
+@import "@/shared/styles/variables.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: $spacing-xl;
+  background-color: $bg-dark;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+  color: $text-white;
+  text-align: center;
+}
+
+.errorBlock {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.title {
+  font-size: 72px;
+  font-weight: 700;
+  color: $text-white;
+  line-height: 1;
+  margin: 0;
+
+  @include mobile {
+    font-size: 48px;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 60px;
+  background-color: $text-secondary;
+  opacity: 0.3;
+  margin: 0;
+
+  @include mobile {
+    width: 60px;
+    height: 1px;
+  }
+}
+
+.message {
+  font-size: $font-size-large;
+  color: $text-white;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.homeLink {
+  display: inline-block;
+  margin-top: $spacing-lg;
+  padding: $spacing-md $spacing-xl;
+  background-color: $primary-color;
+  color: $text-white;
+  text-decoration: none;
+  border-radius: $border-radius;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: $primary-hover;
+  }
+
+  @include mobile {
+    margin-top: $spacing-md;
+  }
+}
