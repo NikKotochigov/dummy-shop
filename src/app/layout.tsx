@@ -5,7 +5,7 @@ import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "Abelohost Shop",
-  description: "Online shop with latest products",
+  description: "Online shop with products from Abelohost",
 };
 
 export default function RootLayout({
